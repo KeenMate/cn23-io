@@ -1,0 +1,7 @@
+<%= Cn23Web.PowAssent.ViewHelpers.provider_links @conn, fn provider, _ -> %>
+	<%= Cn23Web.PowAssent.ViewHelpers.authorization_link @conn, provider, class: "btn btn-circle btn-outline-contrast me-2" do %>
+		<button>
+      <%= Cn23Web.PowAssent.ViewHelpers.provider_icon(@conn, provider) %>
+    </button>
+	<% end %>
+<% end %>

@@ -39,3 +39,11 @@
     </ul>
   </article>
 </section>
+
+<%= if Map.get(assigns, :current_user) do %>
+  <p>
+    You are: <strong><%= @current_user.display_name %></strong>
+  </p>
+<% else %>
+  You are not known to me!
+<% end %>

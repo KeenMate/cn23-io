@@ -7,6 +7,24 @@
 # General application configuration
 import Config
 
+config :cn23, :pow,
+  user: Cn23.Users.User,
+  repo: Cn23.Repo,
+  web_module: Cn23Web
+
+  config :cn23, :pow_assent,
+  providers: [
+    github: [
+      icon: "fab fa-github",
+      client_id: "CLIENT_ID",
+      client_secret: "CLIENT_SECRET",
+      strategy: Assent.Strategy.Github
+    ],
+    # azure: [
+    #   icon: "fab fa-microsoft"
+    # ]
+  ]
+
 config :cn23,
   ecto_repos: [Cn23.Repo]
 

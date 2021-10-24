@@ -1,5 +1,7 @@
 defmodule Cn23Web.Router do
   use Cn23Web, :router
+  use Pow.Phoenix.Router
+  use PowAssent.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,6 +14,53 @@ defmodule Cn23Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :skip_csrf_protection do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :put_secure_browser_headers
+  end
+
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Cn23Web.AuthErrorHandler
+  end
+
+  pipeline :not_authenticated do
+    plug Pow.Plug.RequireNotAuthenticated,
+      error_handler: Cn23Web.AuthErrorHandler
+  end
+
+  scope "/", Cn23Web do
+    pipe_through [:browser, :not_authenticated]
+
+    get "/signup", RegistrationController, :new, as: :signup
+    post "/signup", RegistrationController, :create, as: :signup
+    get "/login", SessionController, :new, as: :login
+    post "/login", SessionController, :create, as: :login
+  end
+
+  scope "/", Cn23Web do
+    pipe_through [:browser, :protected]
+
+    delete "/logout", SessionController, :delete, as: :logout
+    get "/logout", SessionController, :delete, as: :logout
+
+    pow_assent_routes()
+  end
+
+  scope "/" do
+    pipe_through [:browser]
+
+    pow_assent_routes()
+  end
+
+  scope "/" do
+    pipe_through :skip_csrf_protection
+
+    pow_assent_authorization_post_callback_routes()
   end
 
   scope "/", Cn23Web do
