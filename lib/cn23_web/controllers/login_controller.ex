@@ -1,13 +1,13 @@
-defmodule Cn23Web.SessionController do
+defmodule Cn23Web.LoginController do
   use Cn23Web, :controller
 
-  def new(conn, _params) do
+  def login_page(conn, _params) do
     changeset = Pow.Plug.change_user(conn)
 
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "login.html", changeset: changeset)
   end
 
-  def create(conn, %{"user" => user_params}) do
+  def login(conn, %{"user" => user_params}) do
     conn
     |> Pow.Plug.authenticate_user(user_params)
     |> case do
@@ -21,7 +21,7 @@ defmodule Cn23Web.SessionController do
 
         conn
         |> put_flash(:info, "Invalid email or password")
-        |> render("new.html", changeset: changeset)
+        |> render("login.html", changeset: changeset)
     end
   end
 

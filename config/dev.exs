@@ -4,10 +4,27 @@ import Config
 config :cn23, Cn23.Repo,
   username: "postgres",
   password: "postgres",
-  database: "cn23_dev",
+  database: "cn23",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
+
+config :cn23, :pow_assent,
+  providers: [
+    zuubr: [
+      client_id: "CLIENT_ID",
+      client_secret: "CLIENT_SECRET",
+      site: "https://auth.keenmate.com/auth/realms/zuubr",
+      # openid
+      authorization_params: [scope: "email profile offline_access"],
+      strategy: Assent.Strategy.OIDC
+    ],
+    github: [
+      client_id: "CLIENT_ID",
+      client_secret: "CLIENT_SECRET",
+      strategy: Assent.Strategy.Github
+    ]
+  ]
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

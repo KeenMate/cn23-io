@@ -12,17 +12,15 @@ config :cn23, :pow,
   repo: Cn23.Repo,
   web_module: Cn23Web
 
-  config :cn23, :pow_assent,
+config :cn23, :pow_assent,
+  user_identities_context: Octoro.UserIdentities.Context,
   providers: [
     github: [
       icon: "fab fa-github",
-      client_id: "CLIENT_ID",
-      client_secret: "CLIENT_SECRET",
-      strategy: Assent.Strategy.Github
     ],
-    # azure: [
-    #   icon: "fab fa-microsoft"
-    # ]
+    zuubr: [
+      icon: "fas fa-jedi"
+    ]
   ]
 
 config :cn23,

@@ -6,7 +6,7 @@ defmodule Cn23Web.AuthErrorHandler do
   def call(conn, :not_authenticated) do
     conn
     |> put_flash(:error, "You've to be authenticated first")
-    |> redirect(to: Routes.login_path(conn, :new))
+    |> redirect(to: Routes.login_path(conn, :login_page))
   end
 
   @spec call(Conn.t(), atom()) :: Conn.t()

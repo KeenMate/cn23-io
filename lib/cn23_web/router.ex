@@ -33,22 +33,10 @@ defmodule Cn23Web.Router do
       error_handler: Cn23Web.AuthErrorHandler
   end
 
-  scope "/", Cn23Web do
-    pipe_through [:browser, :not_authenticated]
+  scope "/" do
+    pipe_through :skip_csrf_protection
 
-    get "/signup", RegistrationController, :new, as: :signup
-    post "/signup", RegistrationController, :create, as: :signup
-    get "/login", SessionController, :new, as: :login
-    post "/login", SessionController, :create, as: :login
-  end
-
-  scope "/", Cn23Web do
-    pipe_through [:browser, :protected]
-
-    delete "/logout", SessionController, :delete, as: :logout
-    get "/logout", SessionController, :delete, as: :logout
-
-    pow_assent_routes()
+    pow_assent_authorization_post_callback_routes()
   end
 
   scope "/" do
@@ -57,10 +45,19 @@ defmodule Cn23Web.Router do
     pow_assent_routes()
   end
 
-  scope "/" do
-    pipe_through :skip_csrf_protection
+  scope "/", Cn23Web do
+    pipe_through [:browser, :not_authenticated]
 
-    pow_assent_authorization_post_callback_routes()
+    get "/signup", SignupController, :signup_page
+    post "/signup", SignupController, :signup
+    get "/login", LoginController, :login_page
+    post "/login", LoginController, :login
+  end
+
+  scope "/", Cn23Web do
+    pipe_through [:browser, :protected]
+
+    get "/logout", LoginController, :logout
   end
 
   scope "/", Cn23Web do

@@ -10,6 +10,8 @@ defmodule Cn23.Users.User do
   @derive {Jason.Encoder, only: [:user_id, :display_name, :email]}
 
   schema "users" do
+    field :display_name, :string
+
     pow_user_fields()
 
     timestamps()
