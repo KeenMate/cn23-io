@@ -2,12 +2,12 @@ import Config
 
 # Configure your database
 config :cn23, Cn23.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "cn23",
+  password: "Clo/Zoll Master 3000",
   database: "cn23",
-  hostname: "localhost",
+  hostname: "db-02.km8.es",
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 2
 
 config :cn23, :pow_assent,
   providers: [

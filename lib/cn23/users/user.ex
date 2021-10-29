@@ -9,7 +9,7 @@ defmodule Cn23.Users.User do
   @timestamps_opts [type: :utc_datetime]
   @derive {Jason.Encoder, only: [:user_id, :display_name, :email]}
 
-  schema "users" do
+  schema "user_info" do
     field :display_name, :string
 
     pow_user_fields()
