@@ -7,6 +7,9 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 if config_env() == :prod do
+  config :logger,
+    level: System.fetch_env!("LOG_LEVEL") |> String.downcase() |> String.to_existing_atom()
+
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """
@@ -33,13 +36,11 @@ if config_env() == :prod do
       """
 
   config :cn23, Cn23Web.Endpoint,
+    url: [scheme: "https", host: System.fetch_env!("HOST"), port: 443],
     http: [
-      # Enable IPv6 and bind on all interfaces.
-      # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
-      # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
-      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
-      ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: String.to_integer(System.get_env("PORT") || "4000")
+      :inet6,
+      port: String.to_integer(System.get_env("PORT") || "4000"),
+      compress: true
     ],
     secret_key_base: secret_key_base
 
