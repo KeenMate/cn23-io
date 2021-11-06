@@ -19,8 +19,8 @@ defmodule Cn23Web.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :cn23,
-    gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    gzip: true
+    # only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

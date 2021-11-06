@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "Cn23", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+
+    <script defer type="text/javascript" src={Routes.static_path(@conn, "/js/main.js")}></script>
+    <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
+
+    <%= render_existing Cn23Web.LayoutView, "app.styles.html", assigns %>
+    <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
+    <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
   </head>
   <body>
     <header>
