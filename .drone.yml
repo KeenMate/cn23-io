@@ -20,15 +20,15 @@ environment:
   NODE_ENV: prod
 
 steps:
-  # - name: npm assets
-  #   image: node:lts # we're using standard version because git is needed
-  #   volumes:
-  #   - name: npm-temp
-  #     path: /root/.npm
-  #   commands:
-  #   - cd assets
-  #   - npm install
-  #   - npm run build
+  - name: npm assets
+    image: node:lts # we're using standard version because git is needed
+    volumes:
+    - name: npm-temp
+      path: /root/.npm
+    commands:
+    - cd assets
+    - npm install
+    - npm run build
 
   # - name: download assets
   #   image: minio/mc
@@ -50,7 +50,7 @@ steps:
   - name: digest
     depends_on:
     - elixir deps
-    # - npm assets
+    - npm assets
     image: elixir:1.12-alpine
     volumes:
       - name: mix-temp
