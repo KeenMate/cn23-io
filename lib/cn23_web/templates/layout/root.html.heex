@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Cn23", suffix: " · Phoenix Framework" %>
+    <title><%= title(@conn, assigns) %></title>
 
     <script defer type="text/javascript" src={Routes.static_path(@conn, "/js/main.js")}></script>
     <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>

@@ -49,7 +49,8 @@ defmodule Cn23.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:pow, "~> 1.0.25"},
-      {:pow_assent, "~> 0.4.12"}
+      {:pow_assent, "~> 0.4.12"},
+      {:simplificator_3000, "~> 0.1.0"}
     ]
   end
 

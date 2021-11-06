@@ -1,5 +1,6 @@
 defmodule Cn23Web.LayoutView do
   use Cn23Web, :view
+  use Simplificator3000, :layout
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.

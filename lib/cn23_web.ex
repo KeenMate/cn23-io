@@ -20,6 +20,7 @@ defmodule Cn23Web do
   def controller do
     quote do
       use Phoenix.Controller, namespace: Cn23Web
+      use Simplificator3000, :controller
 
       import Plug.Conn
       import Cn23Web.Gettext
@@ -32,6 +33,8 @@ defmodule Cn23Web do
       use Phoenix.View,
         root: "lib/cn23_web/templates",
         namespace: Cn23Web
+
+      use Simplificator3000, :view
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
