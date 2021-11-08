@@ -30,13 +30,13 @@ steps:
     - npm install
     - npm run build
 
-  # - name: download assets
-  #   image: minio/mc
-  #   environment:
-  #     MC_HOST_minio:
-  #       from_secret: minio_connection
-  #   commands:
-  #   - mc cp --recursive minio/phoenix_svelte_adminlte-assets/ /drone/src/apps/priv/static
+  - name: download assets
+    image: minio/mc
+    environment:
+      MC_HOST_minio:
+        from_secret: minio_connection
+    commands:
+    - mc cp --recursive minio/cn23-assets/ /drone/src/priv/static
 
   - name: elixir deps
     image: elixir:1.12-alpine
@@ -51,6 +51,7 @@ steps:
     depends_on:
     - elixir deps
     - npm assets
+    - download assets
     image: elixir:1.12-alpine
     volumes:
       - name: mix-temp

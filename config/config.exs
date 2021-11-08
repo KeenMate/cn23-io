@@ -20,7 +20,7 @@ config :cn23, :pow_assent,
   user_identities_context: Octoro.UserIdentities.Context,
   providers: [
     github: [
-      icon: "fab fa-github",
+      icon: "fab fa-github"
     ],
     zuubr: [
       icon: "fas fa-jedi"
@@ -36,6 +36,26 @@ config :cn23, Cn23Web.Endpoint,
   render_errors: [view: Cn23Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Cn23.PubSub,
   live_view: [signing_salt: "2CCwp25L"]
+
+config :ecto_gen,
+  otp_app: :cn23,
+  db_config: Cn23.Repo,
+  # relative path should be relative to the project root
+  output_location: "lib/cn23/database",
+  # Module prefix that will be used for generated content
+  output_module: "Cn23.Database",
+
+  # This config holds information about what routines (funcs) from database will have generated elixir functions etc.
+  # db project has keys, each representing database's schema which has config for what routines it includes/ingores
+  db_project: [
+    public: [
+      # or ["func_name_1", "func_name_2"]
+      funcs: "*"
+
+      # makes sense to specify ignored functions (routines) only when funcs equal "*"
+      # ignored_funcs: ["ignored_func_name_1"]
+    ]
+  ]
 
 # Configures the mailer
 #

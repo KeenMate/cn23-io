@@ -92,20 +92,20 @@ const main = {
       dedupe: ["svelte"],
     }),
 
-    copy({
-      targets: [{
-        src: "node_modules/@fortawesome/fontawesome-free/webfonts",
-        dest: "../priv/static"
-      },
-      {
-        src: "static/*",
-        dest: "../priv/static"
-      },
-      {
-        src: "images/*",
-        dest: "../priv/static/images"
-      }]
-    }),
+    // copy({
+    //   targets: [{
+    //     src: "node_modules/@fortawesome/fontawesome-free/webfonts",
+    //     dest: "../priv/static"
+    //   },
+    //   {
+    //     src: "static/*",
+    //     dest: "../priv/static"
+    //   },
+    //   {
+    //     src: "images/*",
+    //     dest: "../priv/static/images"
+    //   }]
+    // }),
 
     // use commonjs import convention
     commonjs(),

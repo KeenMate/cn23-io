@@ -50,7 +50,8 @@ defmodule Cn23.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:pow, "~> 1.0.25"},
       {:pow_assent, "~> 0.4.12"},
-      {:simplificator_3000, "~> 0.1.0"}
+      {:simplificator_3000, "~> 0.1.0"},
+      {:ecto_gen, "~> 0.8.5", runtime: false, only: :dev}
     ]
   end
 
@@ -64,7 +65,7 @@ defmodule Cn23.MixProject do
     [
       setup: ["assets.setup", "assets.build", "deps.get"],
       "assets.setup": ["cmd --cd assets npm i"],
-      "assets.build": ["cmd --cd assets npm run deploy"],
+      "assets.build": ["cmd --cd assets npm run build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
