@@ -40,6 +40,8 @@ steps:
 
   - name: elixir deps
     image: elixir:1.12-alpine
+    depends_on:
+      - npm assets
     volumes:
       - name: mix-temp
         path: /root/.mix
@@ -50,7 +52,6 @@ steps:
   - name: digest
     depends_on:
     - elixir deps
-    - npm assets
     - download assets
     image: elixir:1.12-alpine
     volumes:
