@@ -1,1 +1,0 @@
-mc mirror "priv/static/" "km/cn23-assets"

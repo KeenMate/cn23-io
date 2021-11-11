@@ -1,0 +1,1 @@
+mc cp "km/cn23-assets/" "priv/static" --recursive
