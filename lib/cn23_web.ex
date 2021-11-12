@@ -32,7 +32,8 @@ defmodule Cn23Web do
     quote do
       use Phoenix.View,
         root: "lib/cn23_web/templates",
-        namespace: Cn23Web
+        namespace: Cn23Web,
+        pattern: "**/*"
 
       use Simplificator3000, :view
 
@@ -93,6 +94,7 @@ defmodule Cn23Web do
       import Cn23Web.ErrorHelpers
       import Cn23Web.Gettext
       alias Cn23Web.Router.Helpers, as: Routes
+      alias Cn23Web.ComponentsView, as: Components
     end
   end
 

@@ -1,0 +1,43 @@
+<!-- start page title -->
+<section class="half-section bg-light-gray parallax" data-parallax-background-ratio="0.5" style="background-image:url('images/portfolio-bg2.jpg');">
+    <div class="container">
+        <div class="row align-items-stretch justify-content-center extra-small-screen">
+            <div class="col-12 col-xl-6 col-lg-7 col-md-8 page-title-extra-small text-center d-flex justify-content-center flex-column">
+                <h1 class="alt-font text-gradient-sky-blue-pink margin-15px-bottom d-inline-block">Blog grid layout</h1>
+                <h2 class="text-extra-dark-gray alt-font font-weight-500 letter-spacing-minus-1px line-height-50 sm-line-height-45 xs-line-height-30 no-margin-bottom">Latest updates</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title -->
+
+<!-- start section --> 
+<section class="bg-light-gray pt-0 padding-eleven-lr xl-padding-two-lr xs-no-padding-lr">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 blog-content">
+                <ul class="blog-grid blog-wrapper grid grid-loading grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large">
+                    <li class="grid-sizer"></li>
+
+                    <%= for release <- @releases do %>
+                    <%= render "releases/blog_post.html", release %>
+                    <% end %>
+                </ul>
+
+                <!-- start pagination -->
+                <div class="col-12 d-flex justify-content-center margin-7-half-rem-top md-margin-5-rem-top wow animate__fadeIn">
+                    <ul class="pagination pagination-style-01 text-small font-weight-500 align-items-center">
+                        <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">01</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">02</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        <li class="page-item"><a class="page-link" href="#">04</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></a></li>
+                    </ul>
+                </div>
+                <!-- end pagination -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end section -->  

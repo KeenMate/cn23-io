@@ -1,0 +1,23 @@
+<!-- start blog item -->
+<li class="grid-item wow animate__fadeIn" data-wow-delay={@delay}>
+    <div class="blog-post border-radius-5px bg-white box-shadow-medium">
+        <div class="blog-post-image bg-medium-slate-blue">
+            <a href="blog-post-layout-02.html" title=""><img src="https://via.placeholder.com/800x560" alt=""></a>
+
+            <%= if @category do %>
+            <a href="blog-masonry.html" class="blog-category alt-font"><%= @category %></a>
+            <% end %>
+        </div>
+        <div class="post-details padding-3-rem-lr padding-2-half-rem-tb">
+            <a href="blog-masonry.html" class="alt-font text-small d-inline-block margin-10px-bottom"><%= @date %></a>
+            <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray margin-15px-bottom d-block"><%= @title %> </a>
+            <p><%= @perex %></p>
+            <div class="d-flex align-items-center">
+                <img class="avtar-image" src="https://via.placeholder.com/125x125" alt=""/>
+                <span class="alt-font text-small me-auto">By <a href="blog-masonry.html" class="text-sky-blue-hover"><%= @author %></a></span>
+                <a href="blog-post-layout-02.html" class="blog-like alt-font text-extra-small"><i class="far fa-heart"></i><span><%= @likes %></span></a>
+            </div>
+        </div>
+    </div>
+</li>
+<!-- end blog item -->

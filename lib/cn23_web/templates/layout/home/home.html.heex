@@ -1,0 +1,39 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<%= csrf_meta_tag() %>
+		<title><%= title(@conn, assigns) %></title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="author" content="ThemeZaa">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+		<meta name="description" content="Litho is a clean and modern design, BootStrap 5 responsive, business and portfolio multipurpose HTML5 template with 37+ ready homepage demos.">
+		
+		<!-- favicon icon -->
+		<link rel="shortcut icon" href={Routes.static_path(@conn, "/images/favicon.png")}>
+		<link rel="apple-touch-icon" href={Routes.static_path(@conn, "/images/apple-touch-icon-57x57.png")}>
+		<link rel="apple-touch-icon" sizes="72x72" href={Routes.static_path(@conn, "/images/apple-touch-icon-72x72.png")}>
+		<link rel="apple-touch-icon" sizes="114x114" href={Routes.static_path(@conn, "/images/apple-touch-icon-114x114.png")}>
+
+		<%= render_existing Cn23Web.LayoutView, "app.styles.html", assigns %>
+    <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
+    <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
+	</head>
+	<body data-mobile-nav-trigger-alignment="right" data-mobile-nav-style="modern" data-mobile-nav-bg-color="#302158">
+		
+		<%= render "home/_header.html", assigns %>
+
+		<%= @inner_content %>
+
+		<%= render "home/_footer.html", assigns %>
+
+		<!-- start scroll to top -->
+		<a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>
+		<!-- end scroll to top -->
+
+		<!-- scripts -->
+		<script defer type="text/javascript" src={Routes.static_path(@conn, "/js/main.js")}></script>
+    <%= render_existing Cn23Web.LayoutView, "app.scripts.html", assigns %>
+    <%= render "_component_scripts.html", additional_scripts: Map.get(assigns, :additional_scripts, []) %>
+	</body>
+</html>

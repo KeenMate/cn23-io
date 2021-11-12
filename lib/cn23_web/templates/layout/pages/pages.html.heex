@@ -19,13 +19,13 @@
     <%= render "_component_styles.html", additional_styles: Map.get(assigns, :additional_styles, []) %>
     <%= render_existing view_module(@conn), String.replace_suffix(view_template(@conn), ".html", "") <> ".styles.html", assigns %>
 	</head>
-	<body data-mobile-nav-trigger-alignment="right" data-mobile-nav-style="modern" data-mobile-nav-bg-color="#302158">
+	<body data-mobile-nav-style="classic">
 		
-		<%= render "_header.html", assigns %>
+		<%= render "pages/_header.html", assigns %>
 
 		<%= @inner_content %>
 
-		<%= render "_footer.html", assigns %>
+		<%= render "pages/_footer.html", assigns %>
 
 		<!-- start scroll to top -->
 		<a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>

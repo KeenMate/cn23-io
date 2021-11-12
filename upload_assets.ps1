@@ -1,1 +1,1 @@
-mc mirror "priv/static" "km/cn23-assets"
+mc mirror "priv/static" "km/cn23-assets" --overwrite
