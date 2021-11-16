@@ -1,8 +1,32 @@
 defmodule Cn23Web.PageController do
   use Cn23Web, :controller
 
+  import Cn23.Navigation
+
   def index(conn, _params) do
-    features = [
+    with {:ok, main_nav_items} <- get_navigation("main", 1) do
+      IO.puts("Navigation retrieved")
+
+      conn
+      |> put_layout({Cn23Web.LayoutView, "home/home.html"})
+      |> assign(:navigation, %{main: main_nav_items})
+      |> assign(:features, features())
+      |> render("index.html")
+    end
+  end
+
+  def releases(conn, _params) do
+    with {:ok, main_nav_items} <- get_navigation("main", 1) do
+      conn
+      |> put_layout({Cn23Web.LayoutView, "pages/pages.html"})
+      |> assign(:navigation, %{main: main_nav_items})
+      |> assign(:releases, releases())
+      |> render("releases.html")
+    end
+  end
+
+  defp features() do
+    [
       %{
         icon: "Cursor-Click2",
         title: "First feature",
@@ -28,15 +52,10 @@ defmodule Cn23Web.PageController do
         delay: "0.6s"
       }
     ]
-
-    conn
-    |> put_layout({Cn23Web.LayoutView, "home/home.html"})
-    |> assign(:features, features)
-    |> render("index.html")
   end
 
-  def releases(conn, _params) do
-    releases = [
+  defp releases() do
+    [
       %{
         date: "14 March 2020",
         title: "Release X",
@@ -81,11 +100,7 @@ defmodule Cn23Web.PageController do
         likes: 13,
         category: "Release",
         delay: nil
-      },
+      }
     ]
-
-    conn
-    |> assign(:releases, releases)
-    |> render("releases.html")
   end
 end

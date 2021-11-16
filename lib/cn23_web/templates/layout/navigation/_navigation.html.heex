@@ -1,0 +1,7 @@
+<div class={"collapse navbar-collapse justify-content-#{@alignment}"} id="navbarNav">
+  <ul class="navbar-nav alt-font">
+    <%= for %{item: item, children: children} <- build_navigation(@navigation) do %>
+      <%= render "navigation/_item_level_1.html", item: item, children: children %>
+    <% end %>
+  </ul>
+</div>

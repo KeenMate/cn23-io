@@ -1,0 +1,17 @@
+<li class="dropdown">
+  <a data-bs-toggle="dropdown" href={@item.url || "javascript:void(0);"}>
+    <%= @item.title %>
+
+    <%= if length(@children) > 0 do %>
+      <i class="fas fa-angle-right dropdown-toggle"></i>
+    <% end %>
+  </a>
+
+  <%= if length(@children) > 0 do %>
+    <ul class="dropdown-menu">
+      <%= for %{item: item, children: children} <- @children do %>
+        <%= render "navigation/_item_level_3.html", item: item, children: children %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
