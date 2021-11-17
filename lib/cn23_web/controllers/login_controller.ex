@@ -1,6 +1,8 @@
 defmodule Cn23Web.LoginController do
   use Cn23Web, :controller
 
+  plug Cn23Web.Plugs.PutNavigation, ["main", "footer"]
+
   def login_page(conn, _params) do
     changeset = Pow.Plug.change_user(conn)
 
@@ -14,7 +16,7 @@ defmodule Cn23Web.LoginController do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome back!")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.page_path(conn, :index, locale(conn)))
 
       {:error, conn} ->
         changeset = Pow.Plug.change_user(conn, conn.params["user"])
@@ -28,6 +30,6 @@ defmodule Cn23Web.LoginController do
   def logout(conn, _params) do
     conn
     |> Pow.Plug.delete()
-    |> redirect(to: Routes.page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index, locale(conn)))
   end
 end

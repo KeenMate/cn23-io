@@ -1,6 +1,8 @@
 defmodule Cn23Web.SignupController do
   use Cn23Web, :controller
 
+  plug Cn23Web.Plugs.PutNavigation, ["main", "footer"]
+
   def signup_page(conn, _params) do
     # We'll leverage `Pow.Plug`, but you can also follow the classic Phoenix way:
     # changeset = MyApp.Users.User.changeset(%MyApp.Users.User{}, %{})

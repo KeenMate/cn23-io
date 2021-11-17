@@ -11,6 +11,10 @@ config :cn23,
   page_title: "CN23.io",
   title_separator: "・"
 
+config :cn23, Cn23Web.Gettext,
+  locales: ~w(en cs de),
+  default_locale: "en"
+
 config :cn23, :pow,
   user: Cn23.Users.User,
   repo: Cn23.Repo,

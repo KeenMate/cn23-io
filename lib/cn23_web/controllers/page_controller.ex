@@ -1,28 +1,20 @@
 defmodule Cn23Web.PageController do
   use Cn23Web, :controller
 
-  import Cn23.Navigation
+  plug Cn23Web.Plugs.PutNavigation, ["main", "footer"]
 
   def index(conn, _params) do
-    with {:ok, main_nav_items} <- get_navigation("main", 1) do
-      IO.puts("Navigation retrieved")
-
-      conn
-      |> put_layout({Cn23Web.LayoutView, "home/home.html"})
-      |> assign(:navigation, %{main: main_nav_items})
-      |> assign(:features, features())
-      |> render("index.html")
-    end
+    conn
+    |> put_layout({Cn23Web.LayoutView, "home/home.html"})
+    |> assign(:features, features())
+    |> render("index.html")
   end
 
   def releases(conn, _params) do
-    with {:ok, main_nav_items} <- get_navigation("main", 1) do
-      conn
-      |> put_layout({Cn23Web.LayoutView, "pages/pages.html"})
-      |> assign(:navigation, %{main: main_nav_items})
-      |> assign(:releases, releases())
-      |> render("releases.html")
-    end
+    conn
+    |> put_layout({Cn23Web.LayoutView, "pages/pages.html"})
+    |> assign(:releases, releases())
+    |> render("releases.html")
   end
 
   defp features() do

@@ -51,7 +51,8 @@ defmodule Cn23.MixProject do
       {:pow, "~> 1.0.25"},
       {:pow_assent, "~> 0.4.12"},
       {:simplificator_3000, "~> 0.1.0"},
-      {:ecto_gen, "~> 0.8.5", runtime: false, only: :dev}
+      {:ecto_gen, "~> 0.8.5", runtime: false, only: :dev},
+      {:set_locale, "~> 0.2.9"}
     ]
   end
 

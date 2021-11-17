@@ -13,6 +13,14 @@ defmodule Cn23Web.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :locale do
+    plug SetLocale,
+      gettext: Cn23Web.Gettext,
+      default_locale: "en",
+      additional_locales: ["cs", "de"],
+      cookie_key: "cn23_locale"
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -34,6 +42,12 @@ defmodule Cn23Web.Router do
       error_handler: Cn23Web.AuthErrorHandler
   end
 
+  scope "/", Cn23Web do
+    pipe_through [:browser, :locale]
+
+    get "/", PageController, :index
+  end
+
   scope "/" do
     pipe_through :skip_csrf_protection
 
@@ -46,8 +60,8 @@ defmodule Cn23Web.Router do
     pow_assent_routes()
   end
 
-  scope "/", Cn23Web do
-    pipe_through [:browser, :not_authenticated]
+  scope "/:locale", Cn23Web do
+    pipe_through [:browser, :not_authenticated, :locale]
 
     get "/signup", SignupController, :signup_page
     post "/signup", SignupController, :signup
@@ -55,14 +69,14 @@ defmodule Cn23Web.Router do
     post "/login", LoginController, :login
   end
 
-  scope "/", Cn23Web do
-    pipe_through [:browser, :protected]
+  scope "/:locale", Cn23Web do
+    pipe_through [:browser, :protected, :locale]
 
     get "/logout", LoginController, :logout
   end
 
-  scope "/", Cn23Web do
-    pipe_through :browser
+  scope "/:locale", Cn23Web do
+    pipe_through [:browser, :locale]
 
     get "/", PageController, :index
     get "/releases", PageController, :releases

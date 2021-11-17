@@ -25,6 +25,8 @@ defmodule Cn23Web do
       import Plug.Conn
       import Cn23Web.Gettext
       alias Cn23Web.Router.Helpers, as: Routes
+
+      unquote(locale_helpers())
     end
   end
 
@@ -95,6 +97,14 @@ defmodule Cn23Web do
       import Cn23Web.Gettext
       alias Cn23Web.Router.Helpers, as: Routes
       alias Cn23Web.ComponentsView, as: Components
+
+      unquote(locale_helpers())
+    end
+  end
+
+  defp locale_helpers do
+    quote do
+      defp locale(conn), do: conn.params["locale"] || nil
     end
   end
 
