@@ -27,16 +27,7 @@
                 </div>
             </div> %>
 
-            <div class="header-language dropdown d-lg-inline-block">
-                <a href="javascript:void(0);"><i class="feather icon-feather-globe"></i></a>
-                <ul class="dropdown-menu alt-font">
-                    <li><a href="javascript:void(0);" title="English"><span class="icon-country"><img src="images/country-flag-16X16/usa.png" alt=""></span>English</a></li>
-                    <li><a href="javascript:void(0);" title="England"><span class="icon-country"><img src="images/country-flag-16X16/england.png" alt=""></span>England</a></li>
-                    <li><a href="javascript:void(0);" title="France"><span class="icon-country"><img src="images/country-flag-16X16/france.png" alt=""></span>France</a></li>
-                    <li><a href="javascript:void(0);" title="Russian"><span class="icon-country"><img src="images/country-flag-16X16/russian.png" alt=""></span>Russian</a></li>
-                    <li><a href="javascript:void(0);" title="Spain"><span class="icon-country"><img src="images/country-flag-16X16/spain.png" alt=""></span>Spain</a></li>
-                </ul>
-            </div>
+            <%= render "navigation/_language_dropdown.html", assigns %>
         </div>
     </nav>
 </header>

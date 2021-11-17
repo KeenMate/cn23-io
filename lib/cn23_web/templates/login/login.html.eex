@@ -1,26 +1,42 @@
-<h1>Sign in</h1>
+<section class="wow animate__fadeIn">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-5 col-md-6 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
+        <h6 class="alt-font font-weight-500 text-extra-dark-gray">Login</h6>
 
-<%= form_for @changeset, Routes.login_path(@conn, :login, locale(@conn)), [as: :user], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+        <%= form_for @changeset, Routes.login_path(@conn, :login, locale(@conn)), [as: :user, class: "bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all"], fn f -> %>
+        <%# <form class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all"> %>
+          <label class="margin-15px-bottom">Username or email address <span class="required-error text-radical-red">*</span></label>
+          <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "small-input bg-white margin-20px-bottom required", placeholder: "Enter your email" %>
+
+          <label class="margin-15px-bottom">Password <span class="required-error text-radical-red">*</span></label>
+          <%= password_input f, :password, class: "small-input bg-white margin-20px-bottom required", placeholder: "Enter your password" %>
+
+          <%# <label class="margin-25px-bottom">
+              <input class="d-inline-block align-middle w-auto mb-0 margin-5px-right" type="checkbox" name="account">
+              <span class="d-inline-block align-middle">Remember me</span>
+          </label> %>
+
+          <%= submit "Login", class: "btn btn-medium btn-fancy btn-dark-gray w-100 submit" %>
+
+          <p class="text-end margin-20px-top mb-0"><a href="#" class="btn btn-link  btn-medium text-extra-dark-gray">Lost your password?</a></p>
+        <%# </form> %>
+        <% end %>
+      </div>
+
+      <%# <div class="col-12 col-xl-5 offset-xl-1 col-md-6 lg-padding-30px-lr md-padding-15px-lr">
+          <h6 class="alt-font font-weight-500 text-extra-dark-gray">Register</h6>
+          <form class="border-all border-color-medium-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
+              <label class="margin-15px-bottom">Username <span class="required-error text-radical-red">*</span></label>
+              <input class="small-input bg-white margin-20px-bottom required" type="text" name="text" placeholder="Enter your username">
+              <label class="margin-15px-bottom">Email address <span class="required-error text-radical-red">*</span></label>
+              <input class="small-input bg-white margin-20px-bottom required" type="email" name="email" placeholder="Enter your email">
+              <label class="margin-15px-bottom">Password <span class="required-error text-radical-red">*</span></label>
+              <input class="small-input bg-white margin-20px-bottom required" type="password" name="password" placeholder="Enter your password">
+              <p class="text-small">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#" class="text-decoration-underline">privacy policy</a>.</p>
+              <button class="btn btn-medium btn-fancy btn-dark-gray w-100 submit" type="submit">Register</button>
+          </form>
+      </div> %>
     </div>
-  <% end %>
-
-  <%= label f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-  <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-  <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Sign in" %>
   </div>
-<% end %>
-
-
-<span><%= link "Register", to: Routes.signup_path(@conn, :signup_page, locale(@conn)) %></span>
-
-<%= render "_provider_buttons.html", assigns %>
+</section>
