@@ -62,10 +62,9 @@
             <div class="row align-items-center">
                 <div class="col-12 col-md-6 sm-margin-15px-bottom">
                     <ul class="footer-horizontal-link d-flex flex-column flex-sm-row justify-content-center justify-content-md-start text-center">
-                        <li><a href="about-us.html">About us</a></li>
-                        <li><a href="our-services.html">Our services</a></li>
-                        <li><a href="our-team.html">Team</a></li>
-                        <li><a href="contact-us-classic.html">Contact us</a></li>
+                        <%= for %{item: item} <- build_navigation(@navigation["footer"]) do %>
+                            <li><a href={item.url || "#"}><%= item.title %></a></li>
+                        <% end %>
                     </ul>
                 </div>
                 <div class="col-12 col-md-6 text-center text-md-end last-paragraph-no-margin">
