@@ -21,11 +21,9 @@
                 <div class="col-12 col-lg-2 offset-lg-1 col-md-4 col-sm-6 md-margin-40px-bottom xs-margin-25px-bottom">
                     <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Company</span>
                     <ul>
-                        <li><a href="about-us.html">About company</a></li>
-                        <li><a href="our-services.html">Company services</a></li>
-                        <li><a href="our-team.html">Job opportunities</a></li>
-                        <li><a href="our-team.html">Creative people</a></li>
-                        <li><a href="contact-us-classic.html">Contact us</a></li>
+                        <%= for %{item: item} <- build_navigation(@navigation["footer-left"], 1) do %>
+                            <li><a href={item.url || "#"}><%= item.title %></a></li>
+                        <% end %>
                     </ul>
                 </div>
                 <!-- end footer column -->
@@ -33,11 +31,9 @@
                 <div class="col-12 col-lg-2 col-md-4 col-sm-6 xs-margin-45px-bottom">
                     <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Customer</span>
                     <ul>                           
-                        <li><a href="faq.html">Client support</a></li>
-                        <li><a href="latest-news.html">Latest news</a></li>
-                        <li><a href="our-story.html">Company story</a></li>
-                        <li><a href="pricing-packages.html">Pricing packages</a></li>
-                        <li><a href="who-we-are.html">Who we are</a></li>
+                        <%= for %{item: item} <- build_navigation(@navigation["footer-right"], 1) do %>
+                            <li><a href={item.url || "#"}><%= item.title %></a></li>
+                        <% end %>
                     </ul>
                 </div>
                 <!-- end footer column -->
@@ -62,7 +58,7 @@
             <div class="row align-items-center">
                 <div class="col-12 col-md-6 sm-margin-15px-bottom">
                     <ul class="footer-horizontal-link d-flex flex-column flex-sm-row justify-content-center justify-content-md-start text-center">
-                        <%= for %{item: item} <- build_navigation(@navigation["footer"]) do %>
+                        <%= for %{item: item} <- build_navigation(@navigation["footer"], 1) do %>
                             <li><a href={item.url || "#"}><%= item.title %></a></li>
                         <% end %>
                     </ul>

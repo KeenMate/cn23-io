@@ -20,6 +20,8 @@ defmodule Cn23.Application do
       # {Cn23.Worker, arg}
     ]
 
+    Cn23Web.Cache.NavigationCache.start()
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Cn23.Supervisor]

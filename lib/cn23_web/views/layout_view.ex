@@ -8,39 +8,32 @@ defmodule Cn23Web.LayoutView do
   # so we instruct Elixir to not warn if the dashboard route is missing.
   @compile {:no_warn_undefined, {Routes, :live_dashboard_path, 2}}
 
-  def build_navigation(items) when is_list(items) do
-    [level_one, level_two, level_three] = filter_by_level(items)
+  def build_navigation([], _), do: []
+  def build_navigation(nil, _), do: []
 
-    mapped_three = Enum.map(level_three, fn item -> %{item: item, children: []} end)
+  def build_navigation(items, depth) when is_list(items) do
+    get_children = fn items, node_path ->
+      Enum.filter(items, fn %{item: %{parent_path: parent}} -> parent == node_path end)
+    end
 
-    mapped_two =
-      Enum.map(level_two, fn item ->
+    filter_by_level(items, depth)
+    |> Enum.reverse()
+    |> Enum.reduce([], fn level, acc ->
+      Enum.map(level, fn item ->
         %{
           item: item,
-          children:
-            Enum.filter(mapped_three, fn %{item: child} -> child.parent_path == item.node_path end)
+          children: get_children.(acc, item.node_path)
         }
       end)
-
-    mapped_one =
-      Enum.map(level_one, fn item ->
-        %{
-          item: item,
-          children:
-            Enum.filter(mapped_two, fn %{item: child} -> child.parent_path == item.node_path end)
-        }
-      end)
-
-    mapped_one
+    end)
   end
 
-  defp filter_by_level(items) when is_list(items) do
-    level_filter = fn level -> fn %GetNavigationItem{level: item_level} -> item_level == level end end
+  defp filter_by_level(items, depth) when is_list(items) do
+    level_filter = fn level ->
+      fn %GetNavigationItem{level: item_level} -> item_level == level end
+    end
 
-    [
-      Enum.filter(items, level_filter.(1)),
-      Enum.filter(items, level_filter.(2)),
-      Enum.filter(items, level_filter.(3))
-    ]
+    1..depth
+    |> Enum.map(&Enum.filter(items, level_filter.(&1)))
   end
 end
