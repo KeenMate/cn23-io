@@ -6,7 +6,7 @@ defmodule Cn23Web.Cache.NavigationCache do
   """
   def start do
     try do
-      :ets.new(@table, [:set, :public, :named_table]) |> IO.inspect(label: "Cache start")
+      :ets.new(@table, [:set, :public, :named_table])
 
       :ok
     rescue
