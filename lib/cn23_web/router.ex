@@ -79,6 +79,11 @@ defmodule Cn23Web.Router do
     pipe_through [:browser, :locale]
 
     get "/", PageController, :index
+    get "/features", PageController, :features
+    get "/about/technologies", PageController, :technologies
+    get "/about/motivation", PageController, :motivation
+    get "/contact", PageController, :contact
+
     get "/news", NewsController, :news
   end
 

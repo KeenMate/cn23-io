@@ -29,17 +29,19 @@
                 <!-- end footer column -->
                 <!-- start footer column -->
                 <div class="col-12 col-lg-2 col-md-4 col-sm-6 xs-margin-45px-bottom">
-                    <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Customer</span>
-                    <ul>                           
-                        <%= for %{item: item} <- build_navigation(@navigation["footer-right"], 1) do %>
-                            <li><a href={item.url || "#"}><%= item.title %></a></li>
-                        <% end %>
-                    </ul>
+                    <%# <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Customer</span> %>
+                    <%# <ul> %>
+                        <%# for %{item: item} <- build_navigation(@navigation["footer-right"], 1) do %>
+                            <%# <li><a href={item.url || "#"}> %>
+                                <%# item.title %>
+                            <%# </a></li> %>
+                        <%# end %>
+                    <%# </ul> %>
                 </div>
                 <!-- end footer column -->
                 <!-- start footer column -->
                 <div class="col-12 col-lg-3 offset-lg-1 col-md-8 col-sm-6 last-paragraph-no-margin text-center text-lg-start">         
-                    <span class="alt-font font-weight-500 d-none d-lg-block text-white margin-30px-bottom xs-margin-10px-bottom">Download for free</span>
+                    <%# <span class="alt-font font-weight-500 d-none d-lg-block text-white margin-30px-bottom xs-margin-10px-bottom">Download for free</span>
                     <div class="w-85 md-w-100 d-md-flex flex-md-row d-lg-inline-block">
                         <a href="#" class="margin-20px-bottom d-inline-block md-margin-10px-right sm-no-margin-right">
                             <img class="w-100" src={Routes.static_path(@conn, "/images/application-img-11.png")} alt="">
@@ -47,7 +49,7 @@
                         <a href="#" class="margin-20px-bottom d-inline-block md-margin-10px-left sm-no-margin-left">
                             <img class="w-100" src={Routes.static_path(@conn, "/images/application-img-12.png")} alt="">
                         </a>
-                    </div>
+                    </div> %>
                 </div>
                 <!-- end footer column -->
             </div>

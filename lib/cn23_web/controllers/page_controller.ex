@@ -10,6 +10,26 @@ defmodule Cn23Web.PageController do
     |> render("index.html")
   end
 
+  def features(conn, _params) do
+    conn
+    |> render("features.html")
+  end
+
+  def technologies(conn, _params) do
+    conn
+    |> render("technologies.html")
+  end
+
+  def motivation(conn, _params) do
+    conn
+    |> render("motivation.html")
+  end
+
+  def contact(conn, _params) do
+    conn
+    |> render("contact.html")
+  end
+
   defp features() do
     [
       %{

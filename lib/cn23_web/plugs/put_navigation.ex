@@ -11,7 +11,7 @@ defmodule Cn23Web.Plugs.PutNavigation do
   end
 
   defp collect(navs) do
-    Enum.reduce(navs, Map.new(), fn nav, acc -> Map.put(acc, nav, retrieve_navigation(nav, 1)) end)
+    Enum.reduce(navs, Map.new(), fn nav, acc -> Map.put(acc, nav, retrieve_navigation(nav, 2)) end)
   end
 
   defp retrieve_navigation(code, language_id) do
