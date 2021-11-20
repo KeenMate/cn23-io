@@ -80,6 +80,10 @@ defmodule Cn23Web.Router do
 
     get "/", PageController, :index
     get "/releases", PageController, :releases
+    get "/features", PageController, :features
+    get "/about/technologies", PageController, :technologies
+    get "/about/motivation", PageController, :motivation
+    get "/contact", PageController, :contact
   end
 
   # Other scopes may use custom stacks.
