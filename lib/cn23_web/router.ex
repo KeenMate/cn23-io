@@ -79,7 +79,7 @@ defmodule Cn23Web.Router do
     pipe_through [:browser, :locale]
 
     get "/", PageController, :index
-    get "/releases", PageController, :releases
+    get "/news", NewsController, :news
   end
 
   # Other scopes may use custom stacks.

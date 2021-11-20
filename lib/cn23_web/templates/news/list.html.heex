@@ -19,8 +19,8 @@
                 <ul class="blog-grid blog-wrapper grid grid-loading grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large">
                     <li class="grid-sizer"></li>
 
-                    <%= for release <- @releases do %>
-                    <%= render "releases/blog_post.html", release %>
+                    <%= for news <- delay_news(@news, 4) do %>
+                        <%= render "_components/_news_card.html", news %>
                     <% end %>
                 </ul>
 
