@@ -72,7 +72,7 @@ defmodule Cn23.News do
     Map.values(@news)
   end
 
-  def get_news_detail(id) do
+  def get_news_item(id) do
     @news[id]
   end
 end

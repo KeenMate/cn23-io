@@ -84,7 +84,10 @@ defmodule Cn23Web.Router do
     get "/about/motivation", PageController, :motivation
     get "/contact", PageController, :contact
 
-    get "/news", NewsController, :news
+    scope "/news" do
+      get "/", NewsController, :news
+      get "/:id", NewsController, :news_item
+    end
   end
 
   # Other scopes may use custom stacks.

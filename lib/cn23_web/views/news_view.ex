@@ -1,6 +1,10 @@
 defmodule Cn23Web.NewsView do
   use Cn23Web, :view
 
+  def news_item_link(conn, id) do
+    Routes.news_path(conn, :news_item, locale(conn), id)
+  end
+
   def delay_news(news, columns) do
     news
     |> Enum.chunk_every(columns)
