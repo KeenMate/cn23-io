@@ -27,6 +27,12 @@ defmodule Cn23Web do
       alias Cn23Web.Router.Helpers, as: Routes
 
       unquote(locale_helpers())
+
+      def put_meta_tag(conn, name, content) do
+        tags = conn.private[:meta_tags] || []
+
+        put_private(conn, :meta_tags, tags ++ [%{name: name, content: content}])
+      end
     end
   end
 
@@ -99,6 +105,14 @@ defmodule Cn23Web do
       alias Cn23Web.ComponentsView, as: Components
 
       unquote(locale_helpers())
+
+      defmacro meta_tags(conn) do
+        quote do
+          for %{name: name, content: content} <- unquote(conn).private[:meta_tags] || [] do
+            tag(:meta, name: name, content: content)
+          end
+        end
+      end
     end
   end
 
